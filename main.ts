@@ -121,7 +121,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . f 3 3 d 3 3 3 3 3 3 3 f .
         . . . f 3 c 3 d d 3 3 3 c 3 f .
         . . . a 3 c a c c c c a c 3 a .
-        . . . a 3 a c b b b b c a 3 a .
+        . . . a 3 c a c c c c a c 3 a .
         . . . a 3 a b b b b b b a 3 a .
         . . . a a a a a a a a a a a a .
         . . . f a d a a a a a a d a f .
@@ -135,6 +135,11 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Object, function (sprite, ot
     music.magicWand.play()
     sprite.destroy(effects.confetti, 500)
     info.changeScoreBy(1)
+    // Check if player has won
+    if (info.score() >= 10) {
+        game.setGameOverEffect(true, effects.confetti)
+        game.gameOver(true)
+    }
 })
 // Lose a point for driving into a house
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherSprite) {
@@ -185,7 +190,7 @@ for (let value of tiles.getTilesByType(myTiles.tile1)) {
         dbb888aa8aa8aa8aa8aa8a8aa8a8aa8aa8aa8aa8aa888bbd
         dbbaa8aa8888aa8aa8aa8a8aa8a8aa8aa8aa8888aa8aabbd
         dccaa8aa8aa8aa8aa8888a8aa8a8888aa8aa8aa8aa8aaccd
-        bcbaa8888aa8aa8888aa888aa888aa8888aa8aa8888aabcb
+        bcbaa8888aa8aa8888aa8888aa888aa8888aa8aa8888aabcb
         dbbaa8aa8aa8888aa8aa8a8aa8a8aa8aa8888aa8aa8aabbd
         dbb888aa8aa8aa8aa8aa8a8aa8a8aa8aa8aa8aa8aa888bbd
         dccaa8aa8888aa8aa8aa8a8aa8a8aa8aa8aa8888aa8aaccd
@@ -260,7 +265,7 @@ for (let value of tiles.getTilesByType(myTiles.tile2)) {
         6c622e22e22eeee22e22e2e22e2e22e22eeee22e22e226c6
         4cc22eeee22e22e22e22eee22eee22e22e22e22eeee22cc4
         46622e22e22e22eeee22e2e22e2e22eeee22e22e22e22664
-        46622e22eeee22e22eeee2e22e2eeee22e22eeee22e22664
+        46622e22eeee22e22eeee2e22e2eeee22e22e22eeee22664
         6c6eee22e22e22e22e22e2e22e2e22e22e22e22e22eee6c6
         4cc22e22e22eeee22e22e2e22e2e22e22eeee22e22e22cc4
         ...22eeee22e22e22e22eee22eee22e22e22e22eeee22...
